@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>BYRBT Tools</title>
+  <rect width="64" height="64" rx="14" fill="#101e2b"/>
+  <path d="M24 22v-6h16v6" fill="none" stroke="#f5fbff" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="11" y="23" width="42" height="29" rx="5" fill="none" stroke="#4dd9ce" stroke-width="4"/>
+  <path d="M12 35h40" fill="none" stroke="#4dd9ce" stroke-width="3"/>
+  <rect x="28" y="31" width="8" height="9" rx="2" fill="#f5fbff"/>
+</svg>

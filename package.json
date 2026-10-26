@@ -1,0 +1,37 @@
+{
+  "name": "byrbt-tools",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "BYRBT 第三方工具箱，当前提供按 UID 分层屏蔽用户功能",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.js",
+    "check": "npm run format:check && npm run icons:check && npm test && npm run build && npm run test:release",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "preview": "node scripts/preview.mjs",
+    "icons": "node scripts/icons.mjs",
+    "icons:check": "node scripts/icons.mjs --check",
+    "test:release": "node --test test/release.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "esbuild": "^0.25.0",
+    "jsdom": "^26.0.0",
+    "prettier": "3.6.2"
+  },
+  "license": "MIT",
+  "author": "UnbalancedCat",
+  "engines": {
+    "node": ">=24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnbalancedCat/byrbt-tools.git"
+  },
+  "homepage": "https://github.com/UnbalancedCat/byrbt-tools",
+  "bugs": {
+    "url": "https://github.com/UnbalancedCat/byrbt-tools/issues"
+  }
+}

@@ -1,0 +1,32 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+concurrency:
+  group: release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.repository == 'UnbalancedCat/byrbt-tools'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Validate release version
+        run: node -e 'const p=require("./package.json");if(process.env.GITHUB_REF_NAME!==`v${p.version}`)process.exit(1)'
+      - run: npm ci
+      - run: npm run check
+      - name: Create complete draft then publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" --verify-tag --draft --title "BYRBT Tools $RELEASE_TAG" --notes-file "docs/releases/$RELEASE_TAG.md" dist/byrbt-tools.user.js dist/byrbt-tools.meta.js dist/SHA256SUMS.txt
+          gh release edit "$RELEASE_TAG" --draft=false --latest
